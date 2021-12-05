@@ -3,6 +3,7 @@ defmodule Hangman do
   alias Hangman.Type
 
   @opaque game :: Game.t()
+  @type tally :: Type.tally()
 
   @spec new_game() :: game
   defdelegate new_game(), to: Game
