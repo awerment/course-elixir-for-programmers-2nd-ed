@@ -39,6 +39,16 @@ defmodule Hangman.Impl.Game do
     |> return_with_tally()
   end
 
+  @spec tally(t()) :: Type.tally()
+  def tally(game) do
+    %{
+      turns_left: game.turns_left,
+      game_state: game.game_state,
+      letters: reveal_guessed_letters(game),
+      used: game.used |> MapSet.to_list() |> Enum.sort()
+    }
+  end
+
   defp accept_guess(game, _guess, _already_used = true) do
     %{game | game_state: :already_used}
   end
@@ -66,16 +76,6 @@ defmodule Hangman.Impl.Game do
 
   defp return_with_tally(game) do
     {game, tally(game)}
-  end
-
-  @spec tally(t()) :: Type.tally()
-  defp tally(game) do
-    %{
-      turns_left: game.turns_left,
-      game_state: game.game_state,
-      letters: reveal_guessed_letters(game),
-      used: game.used |> MapSet.to_list() |> Enum.sort()
-    }
   end
 
   defp reveal_guessed_letters(game) do
