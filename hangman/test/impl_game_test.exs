@@ -99,7 +99,7 @@ defmodule Hangman.ImplGameTest do
       ["f", :bad_guess, 2, ~w(_ e _ _ _), ~w(a b c d e f)],
       ["g", :bad_guess, 1, ~w(_ e _ _ _), ~w(a b c d e f g)],
       ["h", :good_guess, 1, ~w(h e _ _ _), ~w(a b c d e f g h)],
-      ["i", :lost, 0, ~w(h e _ _ _), ~w(a b c d e f g h i)]
+      ["i", :lost, 0, ~w(h e l l o), ~w(a b c d e f g h i)]
     ]
     |> test_sequence_of_moves()
   end
