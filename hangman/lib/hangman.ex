@@ -1,5 +1,5 @@
 defmodule Hangman do
-  alias Hangman.Runtime.Server
+  alias Hangman.Runtime.{Application, Server}
   alias Hangman.Type
 
   @opaque game :: Server.t()
@@ -7,7 +7,7 @@ defmodule Hangman do
 
   @spec new_game() :: game()
   def new_game() do
-    {:ok, pid} = Server.start_link()
+    {:ok, pid} = Application.start_game()
     pid
   end
 
