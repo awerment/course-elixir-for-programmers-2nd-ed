@@ -10,6 +10,14 @@ defmodule Hangman.Runtime.Server do
     GenServer.start_link(__MODULE__, nil)
   end
 
+  def make_move(pid, guess) do
+    GenServer.call(pid, {:make_move, guess})
+  end
+
+  def tally(pid) do
+    GenServer.call(pid, {:tally})
+  end
+
   # server
 
   def init(_args) do
