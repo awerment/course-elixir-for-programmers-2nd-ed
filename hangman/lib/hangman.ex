@@ -11,7 +11,7 @@ defmodule Hangman do
     pid
   end
 
-  @spec make_move(game(), String.t()) :: {game(), tally()}
+  @spec make_move(game(), String.t()) :: tally()
   defdelegate make_move(game, guess), to: Server
 
   @spec tally(game()) :: tally()
