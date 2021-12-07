@@ -1,5 +1,5 @@
 defmodule Hangman.Runtime.Server do
-  use GenServer
+  use GenServer, restart: :transient
   alias Hangman.Impl.Game
 
   @type t :: pid()

@@ -11,6 +11,11 @@ defmodule Hangman do
     pid
   end
 
+  @spec end_game(game) :: :ok | {:error, :not_found}
+  def end_game(pid) do
+    Application.stop_game(pid)
+  end
+
   @spec make_move(game(), String.t()) :: tally()
   defdelegate make_move(game, guess), to: Server
 

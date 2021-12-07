@@ -1,4 +1,5 @@
 defmodule TextClient.Impl.Player do
+  require IEx
   @typep game :: Hangman.game()
   @typep tally :: Hangman.tally()
   @typep state :: {game, tally}
@@ -12,20 +13,22 @@ defmodule TextClient.Impl.Player do
 
   @spec interact(state) :: :ok
 
-  def interact({_game, _tally = %{game_state: :won}}) do
+  def interact({game, _tally = %{game_state: :won}}) do
     IO.puts("Congratulations. You won!")
+    Hangman.end_game(game)
   end
 
-  def interact({_game, tally = %{game_state: :lost}}) do
+  def interact({game, tally = %{game_state: :lost}}) do
     IO.puts("Sorry, you lost... the word was #{tally.letters |> Enum.join()}")
+    Hangman.end_game(game)
   end
 
   def interact({game, tally}) do
     IO.puts(feedback_for(tally))
     IO.puts(current_word(tally))
 
-    Hangman.make_move(game, get_guess())
-    |> interact()
+    tally = Hangman.make_move(game, get_guess())
+    interact({game, tally})
   end
 
   defp feedback_for(tally = %{game_state: :initializing}) do

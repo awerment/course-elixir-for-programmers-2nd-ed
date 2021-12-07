@@ -14,4 +14,8 @@ defmodule Hangman.Runtime.Application do
   def start_game() do
     DynamicSupervisor.start_child(@super_name, {Server, nil})
   end
+
+  def stop_game(pid) do
+    DynamicSupervisor.terminate_child(@super_name, pid)
+  end
 end
