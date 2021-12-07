@@ -11,8 +11,8 @@ defmodule Hangman do
     pid
   end
 
-  @spec end_game(game) :: :ok | {:error, :not_found}
-  def end_game(pid) do
+  @spec stop_game(game) :: :ok | {:error, :not_found}
+  def stop_game(pid) do
     Application.stop_game(pid)
   end
 
