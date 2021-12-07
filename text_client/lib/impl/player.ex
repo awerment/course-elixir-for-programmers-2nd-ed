@@ -4,9 +4,8 @@ defmodule TextClient.Impl.Player do
   @typep tally :: Hangman.tally()
   @typep state :: {game, tally}
 
-  @spec start() :: :ok
-  def start() do
-    game = Hangman.new_game()
+  @spec start(game) :: :ok
+  def start(game) do
     tally = Hangman.tally(game)
     interact({game, tally})
   end
@@ -15,12 +14,12 @@ defmodule TextClient.Impl.Player do
 
   def interact({game, _tally = %{game_state: :won}}) do
     IO.puts("Congratulations. You won!")
-    Hangman.end_game(game)
+    game
   end
 
   def interact({game, tally = %{game_state: :lost}}) do
     IO.puts("Sorry, you lost... the word was #{tally.letters |> Enum.join()}")
-    Hangman.end_game(game)
+    game
   end
 
   def interact({game, tally}) do
