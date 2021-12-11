@@ -7,9 +7,30 @@ defmodule B2Web.Live.Game.WordSoFar do
 
   def render(assigns) do
     ~H"""
-      <div>
-        word so far
+      <div class="word-so-far">
+        <div class="game-state">
+          <%= state_name(@tally.game_state) %>
+        </div>
+        <div class="letters">
+          <%= for ch <- @tally.letters do %>
+            <div class="one-letter" class={if ch != "_", do: " correct", else: ""}>
+              <%= ch %>
+            </div>
+          <% end %>
+        </div>
       </div>
     """
+  end
+
+  @states %{
+    initializing: "Type or click on your first guess.",
+    good_guess: "Good guess!",
+    bad_guess: "That's not in the word.",
+    won: "You won!",
+    lost: "Sorry, you lost.",
+    already_used: "You already picked that letter."
+  }
+  defp state_name(state) do
+    @states[state] || "Unknown state"
   end
 end
