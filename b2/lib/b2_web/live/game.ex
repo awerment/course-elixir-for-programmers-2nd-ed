@@ -21,7 +21,7 @@ defmodule B2Web.Live.Game do
     """
   end
 
-  @valid_keys ?a..?z |> Enum.to_list() |> List.to_string() |> String.codepoints()
+  @valid_keys ?a..?z |> Enum.map(&<<&1::utf8>>)
   def handle_event("make_move", %{"key" => key}, socket) when key in @valid_keys do
     tally = Hangman.make_move(socket.assigns.game, key)
     socket = assign(socket, tally: tally)
