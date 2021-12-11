@@ -30,3 +30,7 @@
     font-size: 150%;
     margin-bottom: 10%;
 }
+
+.alphabet .one-letter:hover {
+    cursor: pointer;
+}
