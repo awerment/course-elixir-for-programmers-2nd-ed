@@ -21,10 +21,10 @@ defmodule B2Web.Live.Game.Alphabet do
   end
 
   defp class_of(letter, tally) do
-    cond do
-      Enum.member?(tally.letters, letter) -> "correct"
-      Enum.member?(tally.used, letter) -> "wrong"
-      true -> ""
+    case {Enum.member?(tally.letters, letter), Enum.member?(tally.used, letter)} do
+      {true, true} -> "correct"
+      {false, true} -> "wrong"
+      _ -> ""
     end
   end
 end

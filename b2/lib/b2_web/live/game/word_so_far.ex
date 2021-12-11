@@ -13,7 +13,7 @@ defmodule B2Web.Live.Game.WordSoFar do
         </div>
         <div class="letters">
           <%= for ch <- @tally.letters do %>
-            <div class="one-letter" class={if ch != "_", do: " correct", else: ""}>
+            <div class={"one-letter " <> class_of(ch, @tally)}>
               <%= ch %>
             </div>
           <% end %>
@@ -32,5 +32,15 @@ defmodule B2Web.Live.Game.WordSoFar do
   }
   defp state_name(state) do
     @states[state] || "Unknown state"
+  end
+
+  defp class_of("_", _), do: ""
+
+  defp class_of(letter, tally) do
+    case {Enum.member?(tally.letters, letter), Enum.member?(tally.used, letter)} do
+      {true, true} -> "correct"
+      {true, false} -> "wrong"
+      _ -> ""
+    end
   end
 end
