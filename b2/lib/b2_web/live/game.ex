@@ -14,9 +14,9 @@ defmodule B2Web.Live.Game do
   def render(assigns) do
     ~H"""
     <div class="game-holder" phx-window-keyup="make_move">
-      <%= live_component(Game.Figure, tally: @tally, id: 1) %>
-      <%= live_component(Game.Alphabet, tally: @tally, id: 2) %>
-      <%= live_component(Game.WordSoFar, tally: @tally, id: 3) %>
+      <.live_component module={Game.Figure} id="1" tally={@tally} />
+      <.live_component module={Game.Alphabet} id="2" tally={@tally} />
+      <.live_component module={Game.WordSoFar} id="3" tally={@tally} />
     </div>
     """
   end

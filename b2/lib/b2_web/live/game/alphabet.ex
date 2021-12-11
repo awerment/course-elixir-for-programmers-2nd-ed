@@ -1,5 +1,5 @@
 defmodule B2Web.Live.Game.Alphabet do
-  use B2Web, :live_component
+  use Phoenix.LiveComponent
 
   def mount(socket) do
     letters = ?a..?z |> Enum.map(&<<&1::utf8>>)

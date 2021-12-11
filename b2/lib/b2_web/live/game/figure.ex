@@ -1,5 +1,5 @@
 defmodule B2Web.Live.Game.Figure do
-  use B2Web, :live_component
+  use Phoenix.LiveComponent
 
   def render(assigns) do
     ~H"""

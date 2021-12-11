@@ -1,5 +1,5 @@
 defmodule B2Web.Live.Game.WordSoFar do
-  use B2Web, :live_component
+  use Phoenix.LiveComponent
 
   def mount(socket) do
     {:ok, socket}
