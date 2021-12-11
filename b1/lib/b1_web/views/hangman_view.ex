@@ -1,6 +1,10 @@
 defmodule B1Web.HangmanView do
   use B1Web, :view
 
+  alias B1Web.HangmanView.Helpers.FigureFor
+
+  defdelegate figure_for(state), to: FigureFor
+
   @state_fields %{
     initializing: {"initializing", "Guess the word, a letter at a time."},
     good_guess: {"good-guess", "Good guess!"},
@@ -27,101 +31,5 @@ defmodule B1Web.HangmanView do
         submit("Make next guess")
       ]
     end)
-  end
-
-  def figure_for(0) do
-    ~S"""
-      +---+
-      |   |
-      O   |
-     /|\  |
-     / \  |
-          |
-    =========
-    """
-  end
-
-  def figure_for(1) do
-    ~S"""
-      +---+
-      |   |
-      O   |
-     /|\  |
-     /    |
-          |
-    =========
-    """
-  end
-
-  def figure_for(2) do
-    ~S"""
-      +---+
-      |   |
-      O   |
-     /|\  |
-          |
-          |
-    =========
-    """
-  end
-
-  def figure_for(3) do
-    ~S"""
-      +---+
-      |   |
-      O   |
-     /|   |
-          |
-          |
-    =========
-    """
-  end
-
-  def figure_for(4) do
-    ~S"""
-      +---+
-      |   |
-      O   |
-      |   |
-          |
-          |
-    =========
-    """
-  end
-
-  def figure_for(5) do
-    ~S"""
-      +---+
-      |   |
-      O   |
-          |
-          |
-          |
-    =========
-    """
-  end
-
-  def figure_for(6) do
-    ~S"""
-      +---+
-      |   |
-          |
-          |
-          |
-          |
-    =========
-    """
-  end
-
-  def figure_for(7) do
-    ~S"""
-      +---+
-          |
-          |
-          |
-          |
-          |
-    =========
-    """
   end
 end
